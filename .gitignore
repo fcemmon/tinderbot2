@@ -1,0 +1,14 @@
+node_modules
+*.rdb
+.git.old/
+browser/
+logs/
+data/
+js/ghost-cursor/
+python/pygologin/
+tmp/
+videos/
+*.html
+research_libs/
+.DS_Store
+*.sqlite3
