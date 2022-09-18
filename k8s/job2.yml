@@ -1,0 +1,34 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: swipejob
+spec:
+  template:
+    spec:
+      volumes:
+      - name: dshm
+        emptyDir:
+          medium: Memory
+      containers:
+      - name: docker-vnc-xfce4
+        image: registry.localhost:5000/docker-vnc-xfce4:latest
+        imagePullPolicy: Never
+        tty: true
+        volumeMounts:
+        - mountPath: /dev/shm
+          name: dshm
+        command: ["bash", "/home/user/tbot/go/run.sh"]
+        ports:
+        - containerPort: 5900
+        securityContext:
+          allowPrivilegeEscalation: true
+        env:
+          - name: LANG
+            value: en_EN.UTF-8
+          - name: DESKTOP_ENV
+            value: xfce4
+          - name: DESKTOP_SIZE
+            value: "1024x800"
+      restartPolicy: Never
+
+  backoffLimit: 1

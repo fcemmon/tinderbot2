@@ -1,0 +1,7 @@
+visadoo.com, www.visadoo.com
+root * /home/bijan/tinderbot2/rails/public
+@notStatic {
+        not file
+}
+file_server
+reverse_proxy localhost:5000

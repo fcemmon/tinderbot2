@@ -1,0 +1,64 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: swipejob-$JOBTYPE-$JOBID
+  namespace: $NAMESPACE
+spec:
+  ttlSecondsAfterFinished: 5
+  template:
+    metadata:
+      labels:
+        app: swipejob-$JOBID
+    spec:
+      automountServiceAccountToken: false
+      restartPolicy: OnFailure
+      containers:
+      - name: docker-vnc-xfce4
+        args: ["$JOBID"]
+        image: registry.localhost:5000/docker-vnc-xfce4:latest
+        securityContext:
+          allowPrivilegeEscalation: true
+        # imagePullPolicy: Never
+        tty: true
+        ports:
+          - containerPort: 6080
+            name: novnc
+        volumeMounts:
+        - mountPath: /home/user/tbot
+          name: code
+        - mountPath: /entrypoint.sh
+          name: entrypoint
+        - mountPath: /run.sh
+          name: run
+        - mountPath: /dev/shm
+          name: dshm
+        - name: log-volume
+          mountPath: /var/log
+        - name: videos
+          mountPath: /home/user/videos
+        env:
+          - name: LANG
+            value: en_EN.UTF-8
+          - name: DESKTOP_ENV
+            value: xfce4
+          - name: DESKTOP_SIZE
+            value: "1920x1080"
+      volumes:
+      - name: log-volume
+        hostPath:
+          path: /home/bijan/tinderbot2/logs
+      - name: videos
+        hostPath:
+          path: /home/bijan/tinderbot2/videos
+      - name: code
+        hostPath:
+          path: /home/bijan/tinderbot2
+      - name: entrypoint
+        hostPath:
+          path: /home/bijan/tinderbot2/entrypoint.sh
+      - name: run
+        hostPath:
+          path: /home/bijan/tinderbot2/run.sh
+      - name: dshm
+        emptyDir:
+          medium: Memory

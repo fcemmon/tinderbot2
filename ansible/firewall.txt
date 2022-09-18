@@ -1,0 +1,27 @@
+     To                         Action      From
+     --                         ------      ----
+[ 1] OpenSSH                    ALLOW IN    Anywhere
+[ 2] 22                         ALLOW IN    Anywhere
+[ 3] 80/tcp                     ALLOW IN    Anywhere
+[ 4] 443                        ALLOW IN    Anywhere
+[ 5] 30000                      ALLOW IN    Anywhere
+[ 6] 6080                       ALLOW IN    Anywhere
+[ 7] Anywhere                   ALLOW IN    172.17.0.0/16
+[ 8] Anywhere                   ALLOW OUT   172.17.0.0/16 on docker0   (out)
+[ 9] Anywhere                   ALLOW IN    10.43.0.0/16
+[10] Anywhere                   ALLOW IN    10.42.0.0/16
+[11] Anywhere                   ALLOW IN    10.0.0.0/16
+[12] 172.17.0.0/16              ALLOW IN    Anywhere
+[13] 10.43.0.0/16               ALLOW IN    Anywhere
+[14] 10.42.0.0/16               ALLOW IN    Anywhere
+[15] 10.0.0.0/16                ALLOW IN    Anywhere
+[16] Anywhere                   ALLOW OUT   10.43.0.0/16 on docker0    (out)
+[17] Anywhere                   ALLOW OUT   10.42.0.0/16 on docker0    (out)
+[18] Anywhere                   ALLOW IN    172.19.0.0/16
+[19] 172.19.0.0/16              ALLOW IN    Anywhere
+[20] OpenSSH (v6)               ALLOW IN    Anywhere (v6)
+[21] 22 (v6)                    ALLOW IN    Anywhere (v6)
+[22] 80/tcp (v6)                ALLOW IN    Anywhere (v6)
+[23] 443 (v6)                   ALLOW IN    Anywhere (v6)
+[24] 30000 (v6)                 ALLOW IN    Anywhere (v6)
+[25] 6080 (v6)                  ALLOW IN    Anywhere (v6)

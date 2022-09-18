@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: $NAMESPACE
+---
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: pod-max-number
+  namespace: $NAMESPACE
+spec:
+  hard:
+    pods: "40"
