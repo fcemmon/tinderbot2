@@ -3,6 +3,7 @@ class Schedule < ApplicationRecord
     recommended: 'recommended',
     likes: 'likes',
     status_check: 'status_check',
+    location_change: 'location_change'
   }, _prefix: :job_type
 
   validates :swipes_per_day_max,

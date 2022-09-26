@@ -10,16 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_06_10_010131) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_25_175506) do
   # These are extensions that must be enabled in order to support this database
-  enable_extension "pg_stat_statements"
+  enable_extension "adminpack"
   enable_extension "plpgsql"
 
   # Custom types defined in this database.
   # Note that some types may not work with other database engines. Be careful if changing database.
   create_enum "swipe_job_repeat_unit", ["daily", "hourly"]
   create_enum "swipe_job_status", ["pending", "running", "completed", "failed", "queued", "cancelled", "ran_out_of_likes", "identity_verification", "scheduled"]
-  create_enum "swipe_job_type", ["likes", "recommended", "status_check"]
+  create_enum "swipe_job_type", ["likes", "recommended", "status_check", "location_change"]
   create_enum "tinder_account_status", ["banned", "shadowbanned", "verification_required", "active", "under_review", "logged_out", "captcha_required", "identity_verification", "profile_deleted", "proxy_error", "out_of_likes", "age_restricted"]
 
   create_table "account_status_updates", force: :cascade do |t|

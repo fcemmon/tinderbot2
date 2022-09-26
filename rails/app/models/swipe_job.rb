@@ -16,6 +16,7 @@ class SwipeJob < ApplicationRecord
     recommended: 'recommended',
     likes: 'likes',
     status_check: 'status_check',
+    location_change: 'location_change'
   }, _prefix: :job_type
 
   enum repeat_unit: {
@@ -39,6 +40,7 @@ class SwipeJob < ApplicationRecord
 
   scope :not_status_check, -> { where.not(job_type: 'status_check') }
   scope :status_check, -> { where(job_type: 'status_check') }
+  scope :location_change, -> { where(job_type: 'location_change') }
   scope :running, -> { where(status: 'running') }
   scope :failed, -> { not_status_check.where(status: 'failed') }
   scope :failed_checks, -> { status_check.where(status: 'failed') }

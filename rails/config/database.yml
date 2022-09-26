@@ -5,11 +5,11 @@ default: &default
 
 development:
   <<: *default
-  database: tinderbot_dev
+  database: postgres
   adapter: postgresql
   encoding: unicode
   username: postgres
-  password: admin
+  password: Professional123
 
 test:
   <<: *default
