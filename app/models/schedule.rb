@@ -136,6 +136,7 @@ class Schedule < ApplicationRecord
           status = "pending"
         else
           next if has_job_for_next_available_session?(account)
+          next if account.status == 'limit_of_likes'
 
           if swipes_per_day_increment > 0
             # how many jobs have been created with this schedule for this account

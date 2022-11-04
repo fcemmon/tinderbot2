@@ -1,5 +1,9 @@
 # bijan
 users = [
+  %w(admin bijan.pourriahi+admin@gmail.com lkj3lkj3 admintele xxx),
+  %w(Bijan bijan.pourriahi@gmail.com lkj3lkj3 bjtele xxx1),
+  %w(Prince thegreatchuk@gmail.com dsad9jas0d9j019jdqsjda prince_telegram eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MjczMzJkMTc5ZTUwYTUyZTIwODI4ODQiLCJ0eXBlIjoiZGV2Iiwiand0aWQiOiI2MzViNDNmYzYyMzI4NjljYjIwNjA0NDcifQ.a5qEZGDbA1pHWgxih1iqM-Z8ea1tDzBiRcEqFbHXLSo),
+  %w(Frank frank.steinchen2712@gmail.com xczsda9j091jwdajs xsf eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MTM1MDZkZDUwZGQ2YjU0MzY2MDUxNjQiLCJ0eXBlIjoiZGV2Iiwiand0aWQiOiI2MjdlNzdhMzI3YTk0YjAyYzFmNzRkNzMifQ.q5BFuIaHGZBj-l8kweL1ITV5j2AuwwKgEMKZGYfO9mA),
   %w(Robert robert.oppitz@protonmail.com xcxdasdasdasddwedssd zfs eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MjdlMWZmNTRiODM0NDQzNzMzZDFmZjYiLCJ0eXBlIjoiZGV2Iiwiand0aWQiOiI2MzQ5ZDY3NDEzYWZjOTJhMjI3Mzc3MTAifQ.JSkdeMElwFW2QV6p7K5lyV9IZuCFYc3Vpu5M7fAAeqc),
 ]
 

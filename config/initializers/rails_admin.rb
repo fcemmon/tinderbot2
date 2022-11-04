@@ -1021,6 +1021,7 @@ RailsAdmin.config do |config|
         nil,
         :my_jobs,
         :scheduled,
+        :pending,
         :running,
         :status_check,
         :completed,
@@ -1118,8 +1119,7 @@ RailsAdmin.config do |config|
                     # "bg-success"
                   end
 
-          style = "bg-success" if bindings[:object].account_job_status_result == 'limit_of_likes' && bindings[:object].status == 'completed'
-          style = "bg-success" if bindings[:object].job_type == 'limit_of_likes'
+          style = "bg-success" if bindings[:object].job_type == 'limit_of_likes' && bindings[:object].status == 'completed'
           
           %{<div class="progress" style="margin-bottom:0px">
             <div class="#{style} progress-bar animate-width-to" data-animate-length="960" style="width: #{perc}%; overflow: visible; color: black;">

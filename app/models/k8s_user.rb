@@ -39,10 +39,14 @@ class K8sUser
       .where("scheduled_at < ?", Time.zone.now)
       .update(status: 'pending')
 
-    # SwipeJob
-    #   .where(job_type: 'limit_of_likes')
-    #   .where("scheduled_at < ?", Time.zone.now)
-    #   .update(status: 'pending')
+    puts Time.zone.now
+
+    SwipeJob
+      .where(job_type: 'limit_of_likes')
+      .where.not(status: 'pending')
+      .where.not(status: 'running')
+      .where("scheduled_at < ?", Time.zone.now)
+      .update(status: 'pending')
 
     puts "sync time"
     true

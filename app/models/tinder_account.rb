@@ -48,7 +48,7 @@ class TinderAccount < ApplicationRecord
   belongs_to :schedule, optional: true
 
   scope :alive, -> { where.not(status: 'profile_deleted') }
-  scope :active, -> { where(status: ['active', 'out_of_likes']) }
+  scope :active, -> { where(status: ['active', 'out_of_likes', 'limit_of_likes']) }
   scope :banned, -> { where(status: ['banned', 'age_restricted']) }
   scope :captcha, -> { where(status: 'captcha_required') }
   scope :identity, -> { where(status: 'identity_verification') }
