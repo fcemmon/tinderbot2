@@ -31,6 +31,7 @@ class SwipeJob < ApplicationRecord
   has_many :account_status_updates
   has_many :runs, dependent: :delete_all
   belongs_to :tinder_account
+  belongs_to :vps_info
   belongs_to :schedule, optional: true
   # validate :scheduled_at_after_now
   belongs_to :user
@@ -222,6 +223,7 @@ class SwipeJob < ApplicationRecord
 
     SwipeJob.create(
       tinder_account: tinder_account,
+      vps_info: vps_info,
       target: target,
       user: user,
       gold: tinder_account.gold,

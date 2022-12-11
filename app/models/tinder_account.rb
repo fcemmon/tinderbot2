@@ -89,6 +89,7 @@ class TinderAccount < ApplicationRecord
         tinder_account: self,
         job_type: "status_check",
         user: self.user,
+        vps_info: self.user.vps_infos[0],
         warm_up: self.warm_up,
         created_by: :user
       )

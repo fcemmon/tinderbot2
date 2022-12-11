@@ -427,6 +427,9 @@ RailsAdmin.config do |config|
         end
       end
       field :job_type
+      field :vps_info do
+        label "VPS"
+      end
       # field :description
       field :start_time do
         label 'Start'
@@ -493,6 +496,9 @@ RailsAdmin.config do |config|
           end.join.html_safe
         end
       end
+      field :vps_info do
+        label 'VPS'
+      end
       # field :description
       field :job_type
       field :recommended_percentage do
@@ -535,7 +541,6 @@ RailsAdmin.config do |config|
           associated_collection_scope do
             Proc.new { |scope|
               scope.active
-              scope.shadowbanned
             }
           end
         end
@@ -586,6 +591,15 @@ RailsAdmin.config do |config|
       field :stop_time do
         label 'And'
         default_value '3600'
+      end
+      field :vps_info do
+        associated_collection_cache_all false
+        associated_collection_scope do
+          # job = bindings[:object]
+          Proc.new { |scope|
+            scope.where.not(ip: nil)
+          }
+        end
       end
       field :recommended_percentage do
         label 'Recommended %'
@@ -733,6 +747,52 @@ RailsAdmin.config do |config|
     edit do
       field :name
       field :population
+      field :user_id, :hidden do
+        def value
+          bindings[:controller]._current_user.owner_id
+        end
+      end
+    end
+  end
+
+  config.model 'VpsInfo' do
+    label "VPS List"
+    label_plural "VPS List"
+    parent TinderAccount
+    list do
+      sort_by :name
+      field :id do
+        formatted_value do
+          path = bindings[:view].show_path(model_name: 'VpsInfo', id: bindings[:object].id)
+          bindings[:view].link_to(bindings[:object].id, path)
+        end
+      end
+      field :name
+      field :ip
+      field :limit
+      field :swipe_jobs do
+        label 'Running Jobs'
+        pretty_value do
+          bindings[:object].swipe_jobs.where(status: 'running').length()
+        end
+      end
+    end
+    show do
+      field :name
+      field :ip
+      field :limit
+      field :swipe_jobs do
+        label 'Running Jobs'
+        pretty_value do
+          bindings[:object].swipe_jobs.where(status: 'running').length()
+        end
+      end
+    end
+
+    edit do
+      field :name
+      field :ip
+      field :limit
       field :user_id, :hidden do
         def value
           bindings[:controller]._current_user.owner_id
@@ -1101,6 +1161,9 @@ RailsAdmin.config do |config|
       #     end
       #   end
       # end
+      field :vps_info do
+        label 'VPS'
+      end
       field :swipes do
         pretty_value do
           perc = ((bindings[:object].swipes * 1.0 / bindings[:object].target) * 100)
@@ -1254,6 +1317,9 @@ RailsAdmin.config do |config|
       field :account_job_status_result do
         label 'Result'
       end
+      field :vps_info do
+        label 'VPS'
+      end
       configure :video_links do
       end
       field :video_links do
@@ -1317,6 +1383,15 @@ RailsAdmin.config do |config|
             # job = bindings[:object]
             Proc.new { |scope|
               scope.where.not(gologin_profile_id: nil)
+            }
+          end
+        end
+        field :vps_info do
+          associated_collection_cache_all false
+          associated_collection_scope do
+            # job = bindings[:object]
+            Proc.new { |scope|
+              scope.where.not(ip: nil)
             }
           end
         end

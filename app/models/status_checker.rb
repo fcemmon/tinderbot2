@@ -31,6 +31,7 @@ class StatusChecker
       tinder_account: @account,
       job_type: "status_check",
       delay: 5000,
+      vps_info: @account.user.vps_infos[0],
       gold: @account.gold,
       warm_up: @account.warm_up,
       user: @account.user,

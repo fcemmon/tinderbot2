@@ -15,6 +15,7 @@ class Schedule < ApplicationRecord
     :stop_time,
     :split_jobs,
     :user_id,
+    :vps_info_id,
     :job_type,
     :recommended_percentage,
     :delay,
@@ -43,6 +44,8 @@ class Schedule < ApplicationRecord
   end
 
   belongs_to :user
+  belongs_to :vps_info
+
   has_many :status_check_tinder_accounts,
     dependent: :nullify,
     foreign_key: :status_check_schedule_id,
@@ -158,6 +161,7 @@ class Schedule < ApplicationRecord
 
         SwipeJob.create!(
           delay: delay,
+          vps_info_id: vps_info_id,
           delay_variance: delay_variance,
           job_type: job_type,
           recommended_percentage: recommended_percentage,

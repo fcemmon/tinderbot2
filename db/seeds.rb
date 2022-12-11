@@ -26,62 +26,62 @@ begin
   end
 end
 
-# frank
-Owner.transaction do
-  frank = User.find_by(name: 'Frank')
-  model = FanModel.find_or_create_by!(user: frank, name: 'model1')
-  TinderAccount.find_or_create_by!(
-    user: frank,
-    gologin_profile_name: "Tinder Leah 12 gold 2.5.",
-    gologin_profile_id: "626e277d80fc497b0de09c80",
-    gologin_folder: '',
-    location: Location.first,
-    fan_model: model,
-    number: '111',
-    email: 'xxx@gmail.com',
-    password: 'xxx',
-    created_date: '2020/01/01',
-    gold: true,
-    verified: true,
-    gologin: true,
-  )
+# # frank
+# Owner.transaction do
+#   frank = User.find_by(name: 'Frank')
+#   model = FanModel.find_or_create_by!(user: frank, name: 'model1')
+#   TinderAccount.find_or_create_by!(
+#     user: frank,
+#     gologin_profile_name: "Tinder Leah 12 gold 2.5.",
+#     gologin_profile_id: "626e277d80fc497b0de09c80",
+#     gologin_folder: '',
+#     location: Location.first,
+#     fan_model: model,
+#     number: '111',
+#     email: 'xxx@gmail.com',
+#     password: 'xxx',
+#     created_date: '2020/01/01',
+#     gold: true,
+#     verified: true,
+#     gologin: true,
+#   )
 
-  TinderAccount.find_or_create_by!(
-    user: frank,
-    gologin_profile_name: "Tinder Lia 15 gold 19:42",
-    gologin_profile_id: "626997666a822bde7903e658",
-    location: Location.second,
-    fan_model: model,
-    number: '111',
-    email: 'xxx@gmail.com',
-    password: 'xxx',
-    created_date: '2020/01/01',
-    gold: true,
-    verified: true,
-    gologin: true,
-  )
+#   TinderAccount.find_or_create_by!(
+#     user: frank,
+#     gologin_profile_name: "Tinder Lia 15 gold 19:42",
+#     gologin_profile_id: "626997666a822bde7903e658",
+#     location: Location.second,
+#     fan_model: model,
+#     number: '111',
+#     email: 'xxx@gmail.com',
+#     password: 'xxx',
+#     created_date: '2020/01/01',
+#     gold: true,
+#     verified: true,
+#     gologin: true,
+#   )
 
-  t = TinderAccount.find_or_create_by!(
-    user: frank,
-    gologin_profile_name: "Tinder Rose 16 gold 3.5.",
-    gologin_profile_id: "626f2b153bca9791175148d4",
-    location: Location.third,
-    fan_model: model,
-    number: '111',
-    email: 'xxx@gmail.com',
-    password: 'xxx',
-    created_date: '2020/01/01',
-    gold: true,
-    verified: true,
-    gologin: true,
-  )
+#   t = TinderAccount.find_or_create_by!(
+#     user: frank,
+#     gologin_profile_name: "Tinder Rose 16 gold 3.5.",
+#     gologin_profile_id: "626f2b153bca9791175148d4",
+#     location: Location.third,
+#     fan_model: model,
+#     number: '111',
+#     email: 'xxx@gmail.com',
+#     password: 'xxx',
+#     created_date: '2020/01/01',
+#     gold: true,
+#     verified: true,
+#     gologin: true,
+#   )
 
-  SwipeJob.find_or_create_by!(
-    user: frank,
-    tinder_account: t,
-    target: 1,
-  )
-end
+#   SwipeJob.find_or_create_by!(
+#     user: frank,
+#     tinder_account: t,
+#     target: 1,
+#   )
+# end
 
 # # ROBERT
 # Owner.transaction do

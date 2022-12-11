@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_01_055106) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_10_122810) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -94,7 +94,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_01_055106) do
     t.datetime "run_at"
     t.boolean "run_now", default: false, null: false
     t.integer "recurring", default: 24
+    t.bigint "vps_info_id"
     t.index ["user_id"], name: "index_schedules_on_user_id"
+    t.index ["vps_info_id"], name: "index_schedules_on_vps_info_id"
   end
 
   create_table "swipe_jobs", force: :cascade do |t|
@@ -124,9 +126,11 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_01_055106) do
     t.enum "account_job_status_result", enum_type: "tinder_account_status"
     t.boolean "warm_up", default: false, null: false
     t.boolean "gold", default: true
+    t.bigint "vps_info_id"
     t.index ["schedule_id"], name: "index_swipe_jobs_on_schedule_id"
     t.index ["tinder_account_id"], name: "index_swipe_jobs_on_tinder_account_id"
     t.index ["user_id"], name: "index_swipe_jobs_on_user_id"
+    t.index ["vps_info_id"], name: "index_swipe_jobs_on_vps_info_id"
     t.check_constraint "repeat_unit IS NULL AND repeat_n IS NULL OR repeat_unit IS NOT NULL AND repeat_n IS NOT NULL", name: "repeat"
   end
 
@@ -223,6 +227,16 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_01_055106) do
     t.index ["telegram_channel"], name: "index_users_on_telegram_channel", unique: true
   end
 
+  create_table "vps_infos", force: :cascade do |t|
+    t.string "ip", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "name"
+    t.integer "limit", default: 0, null: false
+    t.index ["user_id"], name: "index_vps_infos_on_user_id"
+  end
+
   add_foreign_key "account_status_updates", "swipe_jobs"
   add_foreign_key "account_status_updates", "tinder_accounts"
   add_foreign_key "fan_models", "users"
@@ -230,9 +244,11 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_01_055106) do
   add_foreign_key "matches", "tinder_accounts"
   add_foreign_key "runs", "swipe_jobs"
   add_foreign_key "schedules", "users"
+  add_foreign_key "schedules", "vps_infos"
   add_foreign_key "swipe_jobs", "schedules"
   add_foreign_key "swipe_jobs", "tinder_accounts"
   add_foreign_key "swipe_jobs", "users"
+  add_foreign_key "swipe_jobs", "vps_infos"
   add_foreign_key "tinder_accounts", "fan_models"
   add_foreign_key "tinder_accounts", "locations"
   add_foreign_key "tinder_accounts", "schedules"
@@ -240,4 +256,5 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_01_055106) do
   add_foreign_key "tinder_accounts", "schedules", column: "status_check_schedule_id"
   add_foreign_key "tinder_accounts", "users"
   add_foreign_key "users", "users", column: "employer_id"
+  add_foreign_key "vps_infos", "users"
 end

@@ -23,7 +23,7 @@ task sync: :environment  do
   print "update counts..."
   TinderAccount.update_counts(2)
 
-  print "scheduler..."
+  print "scheduler...."
   Schedule.run_all
   puts "done"
 

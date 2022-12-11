@@ -3,6 +3,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :confirmable, :lockable, :trackable#, :omniauthable, :timeoutable,
   has_many :tinder_accounts
+  has_many :vps_infos
   has_many :swipe_jobs, through: :tinder_accounts
   has_many :employees, class_name: 'User', foreign_key: 'employer_id'
   belongs_to :employer, class_name: 'User', optional: true

@@ -22,6 +22,7 @@ class Ability
       can [:read, :create, :update, :destroy], Schedule, user: user
       can :read, AccountStatusUpdate, tinder_account_id: user.tinder_accounts.map(&:id)
       can :manage, TinderAccount, user: user
+      can :manage, VpsInfo, user: user
       can :manage, SwipeJob, tinder_account_id: user.tinder_accounts.map(&:id)
       # can :read, SwipeJob, tinder_account_id: user.tinder_accounts.map(&:id)
       # can :create, SwipeJob, tinder_account_id: user.tinder_accounts.map(&:id)
